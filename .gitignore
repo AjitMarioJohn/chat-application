@@ -1,0 +1,11 @@
+chat-app-ui/package-lock.json
+/chat-app-ui/.vscode
+/chat-app/.idea
+/chat-app/.mvn/wrapper
+*.class
+*.class
+*.cmd
+chat-app/mvnw
+*.class
+/chat-app/.idea
+chat-app/.idea/misc.xml
