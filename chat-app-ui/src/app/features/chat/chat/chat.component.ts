@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ChatMessage } from '../../../models/chat-message';
 import { WebSocketService } from '../../../services/websocket.service';
 import { Subscription } from 'rxjs';
+import { LoggerService } from '../../../global/logger/logger.service';
 
 @Component({
   selector: 'app-chat',
@@ -19,20 +20,21 @@ export class ChatComponent {
   messages: ChatMessage[] = [];
   message = '';
 
-    constructor(private webSocketService: WebSocketService) {
+    constructor(private webSocketService: WebSocketService, private logger: LoggerService) {
     }
 
     ngOnInit(): void {
       this.subscription = this.webSocketService.getMessages().subscribe({
         next: (event) => {
           if (event instanceof Object) {
-            console.log('Received WebSocket event:', event);
+            this.logger.log('Received WebSocket event:', event);
             this.handleMessage(event);
           } else {
-            console.error('Invalid WebSocket event received:', event);
+            this.logger.error('Invalid WebSocket event received:', event);
           }
         },
-        error: (err) => console.error(err),
+        error: (err) => this.logger.error('WebSocket error:', err),
+        complete: () => this.logger.log('WebSocket connection closed')
       });
     }
   
