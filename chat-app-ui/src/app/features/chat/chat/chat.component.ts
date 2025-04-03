@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ChatMessage } from '../../../models/chat-message';
 import { WebSocketService } from '../../../services/websocket.service';
 import { Subscription } from 'rxjs';
-import { LoggerService } from '../../../global/logger/logger.service';
+import { LoggerService } from '../../../shared/logger/logger.service';
 
 @Component({
   selector: 'app-chat',
