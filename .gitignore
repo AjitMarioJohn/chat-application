@@ -9,3 +9,7 @@ chat-app/mvnw
 *.class
 /chat-app/.idea
 chat-app/.idea/misc.xml
+/chat-app-service-discovery/.mvn
+chat-app-service-discovery/mvnw
+/chat-app/.idea
+chat-app/.idea/compiler.xml
