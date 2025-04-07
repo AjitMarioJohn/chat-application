@@ -1,0 +1,21 @@
+version: '3'
+services:
+  eureka-server:
+    build:
+      context: /chat-app-service-discovery
+      dockerfile: Dockerfile
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-load-balancer
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/update_nginx.sh:/update_nginx.sh  # Mount the script
+    depends_on:
+      - eureka-server
+    entrypoint: ["sh", "-c", "while true; do /update_nginx.sh; sleep 30; done"]
